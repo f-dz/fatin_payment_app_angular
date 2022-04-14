@@ -9,7 +9,7 @@ import { User } from '../models/User';
   providedIn: 'root'
 })
 export class AuthService {
-  endpoint: string = `http://fatin-payment-app.herokuapp.com/api/authmanagement`;
+  endpoint: string = `https://fatin-payment-app.herokuapp.com/api/authmanagement`;
   headers = new HttpHeaders().set('Content-Type', 'application/json');
 
   constructor(private http: HttpClient) {}

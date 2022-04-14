@@ -10,7 +10,7 @@ import { PaymentDetails } from '../models/PaymentDetails';
 })
 export class PaymentService {
 
-  endpoint: string = `http://fatin-payment-app.herokuapp.com/api/payment`;
+  endpoint: string = `https://fatin-payment-app.herokuapp.com/api/payment`;
   
   constructor(private http: HttpClient) { }
 
