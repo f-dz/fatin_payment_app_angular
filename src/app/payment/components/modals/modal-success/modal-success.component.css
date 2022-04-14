@@ -1,0 +1,21 @@
+.show-modal {
+    position: fixed;
+    overflow: auto;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: auto;
+    margin-top: 40px;
+    z-index: 9999 !important;
+}
+
+.navy {
+    background-color: navy;
+    color: white;
+}
+
+.success {
+    font-size: 60px;
+    color: white;
+}

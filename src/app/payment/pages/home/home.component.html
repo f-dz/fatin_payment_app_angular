@@ -1,0 +1,125 @@
+<app-loader *ngIf="loader"></app-loader>
+<app-navbar></app-navbar>
+<div class="content">
+    <div class="m-4">
+        <app-modal-success (eventSuccess)="closeSuccess()" *ngIf="modalSuccess"></app-modal-success>
+        <app-modal-delete [idToDelete]="idToDelete" (eventDelete)="closeDelete()" (isDeleteSuccess)="handleDeleteSuccess()" *ngIf="modalDelete"></app-modal-delete>
+        <div class="row">
+            <div class="col-sm-7">
+                <div class="m-5" style="text-align: center;" *ngIf="listPaymentDetails.length == 0">
+                    <h5>No Payment Details Data</h5>
+                </div>
+                <table class="table table-striped table-hover" *ngIf="listPaymentDetails.length > 0">
+                    <tr>
+                        <th>No</th>
+                        <th>Owner Name</th>
+                        <th>Card Number</th>
+                        <th>Valide Through</th>
+                        <th style="text-align: center;">Action</th>
+                    </tr>
+                    <tr *ngFor="let payment of listPaymentDetails let i = index">
+                        <td>
+                            <a class="btn p-0" (click)="showUpdateData(payment)"></a>{{i+1}}
+                        </td>
+                        <td>
+                            <a class="btn p-0" (click)="showUpdateData(payment)">{{payment.cardOwnerName}}</a>
+                        </td>
+                        <td>
+                            <a class="btn p-0" (click)="showUpdateData(payment)">{{payment.cardNumber}}</a>
+                        </td>
+                        <td>
+                            <a class="btn p-0" (click)="showUpdateData(payment)">{{payment.expirationDate | date: 'dd/MM/YYYY'}}</a>
+                        </td>
+                        <td style="text-align: center;">
+                            <button class="btn navy pb-1 pt-1" (click)="deletePayment(payment.paymentDetailId!)"><i class="bi bi-trash3-fill"></i></button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="col-sm-5">
+                <div class="mb-3" *ngIf="formUpdate">
+                    <a class="btn btn-submit" (click)="showAddNew()"><i class="bi bi-plus-square"></i> Add New Data</a>
+                </div>
+                <div class="card">
+                    <div class="m-4">
+                        <form [formGroup]="form.inputData" (ngSubmit)="submitForm()">
+                            <div class="mb-5">
+                                <h4 class="w-100 font-weight-bold">{{titleForm}}</h4>
+                            </div>
+                            <input [hidden]="true" class="form-control" name="paymentDetailId" formControlName="paymentDetailId">
+                            <div class="md-form mb-3">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label>Card Owner Name</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="cardOwnerName" formControlName="cardOwnerName">
+                                        <div class="message" *ngIf="form.inputData.get('cardOwnerName')?.errors && isSubmitted">
+                                            Name must be at least 3 characters
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md-form mb-3">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label>Card Number</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" name="cardNumber" formControlName="cardNumber">
+                                        <div class="message" *ngIf="form.inputData.get('cardNumber')?.errors && isSubmitted">
+                                            Card number must be number 16 digits
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md-form mb-3">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label>Security Code</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="password" class="form-control" name="securityCode" formControlName="securityCode">
+                                        <div class="message" *ngIf="form.inputData.get('securityCode')?.errors && isSubmitted">
+                                            Security code must be number 3-4 digits
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md-form mb-3">
+                                <div class="row">
+                                    <div class="col-sm-4">
+                                        <label>Valide Through</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="date" class="form-control" name="expirationDate" formControlName="expirationDate">
+                                        <div class="message" *ngIf="form.inputData.get('expirationDate')?.errors && isSubmitted">
+                                            Please input expiration date
+                                        </div>
+                                        <div class="message" *ngIf="form.inputData.get('expirationDate')?.value < date && isSubmitted">
+                                            Date expiration must be greater than or equal to today
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="md-form mt-5">
+                                <div class="row">
+                                    <div class="col">
+                                        <a type="submit" class="btn btn-outline-dark btn-cust" (click)="reloadForm()">
+                                            <i class="bi bi-arrow-counterclockwise"></i> RELOAD
+                                        </a>
+                                    </div>
+                                    <div class="col">
+                                        <a type="submit" class="btn btn-submit btn-cust" (click)="submitForm()">
+                                            <i class="bi bi-send"></i> {{titleButton}}
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

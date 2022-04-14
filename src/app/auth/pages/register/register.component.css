@@ -1,0 +1,15 @@
+.message {
+    font-size: smaller;
+    color: red;
+}
+
+.navy {
+    background-color: navy;
+    color: white;
+}
+
+.dev {
+    color: grey;
+    font-size: smaller;
+    text-align: center;
+}

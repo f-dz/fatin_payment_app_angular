@@ -1,0 +1,38 @@
+.message {
+    font-size: smaller;
+    color: red;
+}
+
+.btn-submit {
+    background-color: navy;
+    color: white;
+}
+
+.btn-cust {
+    width: 100%;
+}
+
+.card {
+    border-color: navy;
+}
+
+.form-control {
+    border-color: navy;
+}
+
+.table {
+    border-bottom: solid gray 0.5px;
+}
+
+td a {
+    text-align: left;
+}
+
+.left {
+    text-align: left;
+}
+
+.navy {
+    background-color: navy;
+    color: white;
+}

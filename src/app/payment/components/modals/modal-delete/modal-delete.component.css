@@ -1,0 +1,25 @@
+.show-modal {
+    position: fixed;
+    overflow: auto;
+    text-align: center;
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: auto;
+    padding-top: 20px;
+    z-index: 9999 !important;
+}
+
+.action {
+    text-align: center !important;
+}
+
+.delete {
+    font-size: 60px;
+    color: grey;
+}
+
+.navy {
+    background-color: navy;
+    color: white;
+}

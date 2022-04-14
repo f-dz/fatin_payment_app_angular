@@ -1,0 +1,55 @@
+<app-loader *ngIf="loader"></app-loader>
+<div class="container">
+    <div class="row">
+        <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+            <div class="card border-0 shadow rounded-3 my-5">
+                <div class="card-body p-4 p-sm-5">
+                    <h2 class="card-title text-center mb-5 fw-light"><b>Register</b></h2>
+                    <form [formGroup]="form.inputData" (ngSubmit)="registerUser()">
+                        <div class="mt-2 mb-2" *ngIf="isSuccess">
+                            <div class="mb-3 is-success">
+                                <i class="bi bi-info-circle-fill"></i> Register success!
+                            </div>
+                        </div>
+                        <div class="mt-2 mb-2" *ngIf="isFailed">
+                            <div class="mb-3 is-success">
+                                <i class="bi bi-info-circle-fill"></i> Register failed!
+                            </div>
+                        </div>
+                        <div class="form-floating">
+                            <input type="text" class="form-control" placeholder="name@example.com" formControlName="username">
+                            <label>Username</label>
+                        </div>
+                        <div class="message" *ngIf="form.inputData.get('username')?.errors && isSubmitted">
+                            Username must be at least 5 characters
+                        </div>
+                        <div class="form-floating mt-3">
+                            <input type="email" class="form-control" placeholder="name@example.com" formControlName="email">
+                            <label>Email</label>
+                        </div>
+                        <div class="message" *ngIf="form.inputData.get('email')?.errors && isSubmitted">
+                            Email must be in email format
+                        </div>
+                        <div class="form-floating mt-3">
+                            <input type="password" class="form-control" placeholder="Password" formControlName="password">
+                            <label>Password</label>
+                        </div>
+                        <div class="message" *ngIf="form.inputData.get('password')?.errors && isSubmitted">
+                            Password must be at least 5 characters with one uppercase, one lowercase, one number, and one special character
+                        </div>
+                        <div class="d-grid mt-3">
+                            <button class="btn navy btn-login text-uppercase fw-bold" type="submit">Register</button>
+                        </div>
+                        <hr class="my-4">
+                        <div class="m-1" style="text-align: center;">
+                            <h6>Have an Account? <a style="color: navy;" href="/login">Login here</a></h6>
+                        </div>
+                        <div class="m-1 dev">
+                            <a class="btn dev" href="http://fatin-payment-app.herokuapp.com" target="_blank">Develop by YUP</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
